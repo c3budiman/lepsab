@@ -1,0 +1,34 @@
+#####Frontend
+
+#navbar 
+Beranda,
+Profil  -> Struktur Organisasi
+	-> Fasilitas Lab
+	-> Lokasi Lab
+Praktikum -> Prosedur Pendaftaran
+	  -> Tata tertib
+	  -> Unduh Materi Kursus
+	  -> Jadwal
+	  -> Informasi Kelulusan
+Pengumuman,
+Berita dan kegiatan,
+Kontak.
+
+#Isi
+Parallax design, pen is mightier than swords
+
+listing lab bahasa
+
+#Footer
+2 row
+2 column
+
+.rowatas
+elearning - ocw - studentsite - perpustakaan - universitas Gunadarma
+copyright - mail, instagram
+
+admin dashboard with -> admin LTE
+
+####backend
+-> login multi user, multi role
+-> admin crud, news crud, page crud, unggah gambar crud, unggah berkas crud, dll...
