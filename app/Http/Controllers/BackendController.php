@@ -38,76 +38,6 @@ class BackendController extends Controller
     return redirect('/');
   }
 
-  public function getPengguna() {
-    $usernya = DB::table('users')->get();
-    return view('dashboard.pengguna.pengguna', ['usernya'=>$usernya]);
-  }
-
-  public function dataPenggunaDT()
-  {
-      return \DataTables::of(User::query())
-          ->addColumn('action', function ($user) {
-              return
-               '<a style="margin-left:5px" href="/pengguna/'.$user->id.'/edit" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-edit"></i> Ubah</a>'
-              .'<a style="margin-left:5px" href="/pengguna/'.$user->id.'/delete" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-minus"></i> Hapus</a>';
-          })
-          ->addColumn('roles', function($user) {
-            return DB::table('roles')->select('namaRule')->where('id', '=', $user->roles_id)->get()->first()->namaRule;
-          })
-          ->make(true);
-  }
-
-  public function posregisnya()
-  {
-    $rolesnya = DB::table('roles')->select('id')->where('namaRule', '=', 'Asisten')->get()->first()->id;
-    $user = new User();
-    $user->email = Input::get('email');
-    $user->name = Input::get('nama');
-    $user->password = bcrypt(Input::get('password'));
-    $user->roles_id = $rolesnya;
-
-    $user->save();
-    return redirect('loginadmin');
-  }
-
-//ini buat view dimana kita bakalan nge set value ke form
-  public function edit($id)
-  {
-    $user = user::find($id);
-    if(!$user)
-    abort(404);
-
-    return view('dashboard.pengguna.edit-pengguna', ['user'=>$user]);
-  }
-
-//ini buat setelah di klik post/put buat update data nya
-  public function update(Request $request, $id)
-  {
-    $user = user::find($id);
-    $user->name = $request->nama;
-    $user->email = $request->email;
-    $user->roles_id = $request->roles;
-    $user->save();
-    return redirect('pengguna');
-  }
-
-//konsep sama....
-  public function delete($id)
-  {
-    $user = user::find($id);
-    if(!$user)
-    abort(404);
-
-    return view('dashboard.pengguna.delete-pengguna', ['user'=>$user]);
-  }
-
-  public function destroy($id)
-  {
-    $user = user::find($id);
-    $user->delete();
-    return redirect('pengguna');
-  }
-
   public function getAturBerita()
   {
     $berita = DB::table('berita')->get();
@@ -386,5 +316,56 @@ class BackendController extends Controller
       $kelulusan = kelulusan::find($id);
       $kelulusan->delete();
       return redirect('atur-kelulusan');
+    }
+
+    public function getProfile() {
+
+      return view('dashboard.profilpengguna');
+      // if (Auth::user()->id) {
+      //   # code...
+      // }
+    }
+
+    public function getGantiPassword()
+    {
+      return view('dashboard.GantiPassword');
+    }
+
+    public function getGantiNama()
+    {
+      return view('dashboard.GantiNama');
+    }
+
+    public function postGantiPassword(Request $request)
+    {
+      $password = $request->password;
+      $passwordbaru1 = $request->password21;
+      $passwordbaru2 = $request->password22;
+      if ($passwordbaru1 == $passwordbaru2) {
+            if (!Hash::check($password,Auth::user()->password)) {
+              return Redirect::back()->withErrors(['Password lama Anda Salah', 'Kredensial anda salah']);
+            } else {
+              //ganti password here
+              $request->user()->fill(['password'=>Hash::make($passwordbaru1)])->save();
+              return Redirect('profile')->with('status', 'Password updated!');
+            }
+          }
+          else {
+            return Redirect::back()->withErrors(['Password baru tidak sama', 'Kredensial anda salah']);
+          }
+    }
+
+    public function postGantiNama(Request $request)
+    {
+      $password = $request->password;
+      if (!Hash::check($password,Auth::user()->password)) {
+          return Redirect::back()->withErrors(['Password lama Anda Salah', 'Kredensial anda salah']);
+          } else {
+          //gantinamahere
+          $userskr = Auth::user();
+          $userskr->name = strip_tags($request->namabaru);
+          $userskr->save();
+          return Redirect('profile')->with('status', 'Nama updated!');
+          }
     }
 }

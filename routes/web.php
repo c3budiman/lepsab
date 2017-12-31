@@ -21,14 +21,20 @@ Route::post('loginadmin', 'loginController@postLogin');
 
 Route::get('dashboard', 'BackendController@index');
 Route::get('home', 'BackendController@redirecthome');
-Route::get('pengguna', 'BackendController@getPengguna');
-Route::post('pengguna', 'BackendController@posregisnya');
+Route::get('pengguna', 'UserController@getPengguna');
+Route::post('pengguna', 'UserController@posregisnya');
 
-Route::get('pengguna/json', 'BackendController@dataPenggunaDT')->name('pengguna/json');
-Route::get('pengguna/{id}/edit', 'BackendController@edit');
-Route::get('pengguna/{id}/delete', 'BackendController@delete');
-Route::put('pengguna/{id}', 'BackendController@update');
-Route::delete('pengguna/{id}', 'BackendController@destroy');
+Route::get('profile', 'BackendController@getProfile');
+Route::get('profile/ubahpassword','BackendController@getGantiPassword');
+Route::get('profile/ubahnama','BackendController@getGantiNama');
+Route::post('profile/ubahpassword','BackendController@postGantiPassword');
+Route::post('profile/ubahnama','BackendController@postGantiNama');
+
+Route::get('pengguna/json', 'UserController@dataPenggunaDT')->name('pengguna/json');
+Route::get('pengguna/{id}/edit', 'UserController@edit');
+Route::get('pengguna/{id}/delete', 'UserController@delete');
+Route::put('pengguna/{id}', 'UserController@update');
+Route::delete('pengguna/{id}', 'UserController@destroy');
 
 Route::get('aturberita','BackendController@getAturBerita');
 Route::get('berita/json', 'BackendController@dataBeritaDT')->name('berita/json');
@@ -73,5 +79,7 @@ Route::post('kelulusan/baru/satuan', 'BackendController@postTambahKelulusan');
 Route::get('kelulusan/{id}/edit','BackendController@EditKelulusan');
 Route::get('kelulusan/{id}/delete','BackendController@destroyKelulusan');
 Route::get('kelulusan/{kelas}', 'getController@getKelulusan');
+
+Route::get('file', 'FileController@getUploadFile');
 
 Route::get('logout', 'BackendController@logout');

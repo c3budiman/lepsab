@@ -81,7 +81,12 @@
       <div class="box">
         <!-- /.box-header -->
         <div class="box-body">
-
+          @if($errors->any())
+          <div class="alert alert-danger alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          {{$errors->first()}}
+          </div>
+          @endif
           <table id="contoh" class="table table-bordered table-hover datatable">
             <thead>
             <tr>
@@ -130,7 +135,7 @@
         <div class="modal-body">
           <div class="box box-info">
               <div class="box-body">
-                <form class="" action="{{url(action('BackendController@posregisnya'))}}" method="post">
+                <form class="" action="{{url(action('UserController@posregisnya'))}}" method="post">
                  {{ csrf_field() }}
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-user"></i></span>

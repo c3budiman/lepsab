@@ -68,6 +68,12 @@
 @section('isinya')
 
   <div class="row">
+    @if($errors->any())
+    <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{$errors->first()}}
+    </div>
+    @endif
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-aqua">
