@@ -179,6 +179,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\DataTables\ButtonsServiceProvider::class,
+        Yajra\Disqus\DisqusServiceProvider::class
 
     ],
 

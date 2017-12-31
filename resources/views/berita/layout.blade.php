@@ -46,7 +46,7 @@
                     print_r($beritanya->content);
                   @endphp
                   {{-- end content --}}
-
+                  <div id="disqus_thread"></div>
                 </div> <!-- end endtry content -->
 
               </div>
