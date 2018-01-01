@@ -20,6 +20,19 @@ Lepsab | Dashboard | Materi Kursus
         <div class="box">
           <!-- /.box-header -->
           <div class="box-body">
+            @if($errors->any())
+                <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{$errors->first()}}
+                </div>
+            @endif
+
+                  @if (session('status'))
+                  <div class="alert alert-info alert-dismissible">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  {{ session('status') }}
+                  </div>
+                  @endif
 
             <table id="contoh" class="table table-bordered table-hover datatable">
               <thead>

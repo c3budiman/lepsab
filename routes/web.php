@@ -53,7 +53,7 @@ Route::post('materi/baru', 'BackendController@storeMateriBaru');
 Route::get('materi/{id}/rename','BackendController@getRenameMateri');
 Route::put('materi/{id}', 'BackendController@update_materi');
 Route::get('materi/{id}/edit','BackendController@getEditMateri');
-Route::delete('materi/{id}', 'BackendController@destroyMateri');
+Route::get('materi/{id}/delete ','BackendController@destroyMateri');
 
 Route::get('atur-jadwal','JadwalController@getAturJadwal');
 Route::get('jadwal/json', 'JadwalController@dataJadwalDT')->name('jadwal/json');
@@ -77,6 +77,7 @@ Route::post('kelulusan/baru','BackendController@importKelulusan');
 Route::get('kelulusan/baru/satuan', 'BackendController@TambahKelulusan');
 Route::post('kelulusan/baru/satuan', 'BackendController@postTambahKelulusan');
 Route::get('kelulusan/{id}/edit','BackendController@EditKelulusan');
+Route::put('kelulusan/{id}','BackendController@updateKelulusan');
 Route::get('kelulusan/{id}/delete','BackendController@destroyKelulusan');
 Route::get('kelulusan/{kelas}', 'getController@getKelulusan');
 

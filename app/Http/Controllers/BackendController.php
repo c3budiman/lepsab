@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Input;
 use Storage;
 use Excel;
 use Datatables;
+use File;
 
 class BackendController extends Controller
 {
@@ -72,7 +73,7 @@ class BackendController extends Controller
     $berita = new berita();
     $berita->sluglink = $url;
     $berita->author = Input::get('nama');
-    $berita->judul = ucwords(Input::get('judul'));
+    $berita->judul = strip_tags(ucwords(Input::get('judul')));
     $berita->author = Input::get('author');
     $berita->content = Input::get('isinya');
     $berita->excerpt = substr(strip_tags(Input::get('isinya')), 0, 400);
@@ -129,6 +130,45 @@ class BackendController extends Controller
         return redirect('aturberita');
       }
 
+      public function getMateriBaru()
+      {
+        return view('dashboard.materi.materibaru');
+      }
+
+      public function storeMateriBaru(Request $request)
+      {
+        if ($request->hasFile('tes')) {
+          $namafile = $request->file('tes')->getClientOriginalName();
+          $ext = $request->file('tes')->getClientOriginalExtension();
+          $lokasifileskr = 'storage/materi/'.$namafile;
+
+          //cek jika file sudah ada...
+          if(File::exists($lokasifileskr)){
+            return Redirect::back()->withErrors(['file sudah ada, coba rename!']);
+          }
+
+          //cek jika nama judul materi ga ditulis
+          if (empty(Input::get('namafile'))) {
+            return Redirect::back()->withErrors(['Nama Materi Tidak Boleh Kosong']);
+          }
+
+          //yg paling penting cek extension, no php allowed
+          if ($ext == "pdf" || $ext == "png" || $ext == "jpg" || $ext == "docx" || $ext == "doc") {
+            $location = Storage::putFileAs('public/materi',$request->file('tes'),$namafile);
+            $lokasi = str_replace("public","storage",$location);
+            $materi = new materi();
+            $materi->nama_materi = strip_tags(Input::get('namafile'));
+            $materi->lokasi_materi = $lokasi;
+            $materi->author = Input::get('author');
+            $materi->save();
+            return redirect('atur-materi')->with('status', 'File Berhasil Di Upload!');
+          }
+          return Redirect::back()->withErrors(['file tidak sesuai, tidak bisa diupload']);
+        } else {
+          return Redirect::back()->withErrors(['file tidak terbaca, tidak bisa diupload']);
+        }
+      }
+
       public function getAturMateri()
       {
         $materi = DB::table('materi')->get();
@@ -169,9 +209,17 @@ class BackendController extends Controller
         if ($request->hasFile('tes')) {
           $namafile = $request->file('tes')->getClientOriginalName();
           $ext = $request->file('tes')->getClientOriginalExtension();
+          $lokasifileskr = 'storage/materi/'.$namafile;
+
           if (empty(Input::get('namafile'))) {
             return Redirect::back()->withErrors(['Nama Materi Tidak Boleh Kosong']);
           }
+
+          //cek jika file sudah ada...
+          if(File::exists($lokasifileskr)){
+            return Redirect::back()->withErrors(['file sudah ada, coba rename!']);
+          }
+
           if ($ext == "pdf" ||
               $ext == "png" ||
               $ext == "jpg" ||
@@ -182,7 +230,7 @@ class BackendController extends Controller
             $location = Storage::putFileAs('public/materi',$request->file('tes'),$namafile);
             $lokasi = str_replace("public","storage",$location);
             $materi = materi::find($id);
-            $materi->nama_materi = Input::get('namafile');
+            $materi->nama_materi = strip_tags(Input::get('namafile'));
             $materi->lokasi_materi = $lokasi;
             $materi->author = Input::get('author');
             $materi->save();
@@ -191,9 +239,10 @@ class BackendController extends Controller
           else {
             return Redirect::back()->withErrors(['file tidak sesuai, tidak bisa diupload']);
           }
-        } else {
+        }
+        else {
           $materi = materi::find($id);
-          $materi->nama_materi = Input::get('namafile');
+          $materi->nama_materi = strip_tags(Input::get('namafile'));
           $materi->save();
           return redirect('atur-materi')->with('status', 'Nama materi berhasil di rename');
         }
@@ -208,34 +257,7 @@ class BackendController extends Controller
         return redirect('atur-materi');
       }
 
-      public function getMateriBaru()
-      {
-        return view('dashboard.materi.materibaru');
-      }
 
-      public function storeMateriBaru(Request $request)
-      {
-        if ($request->hasFile('tes')) {
-          $namafile = $request->file('tes')->getClientOriginalName();
-          $ext = $request->file('tes')->getClientOriginalExtension();
-          if (empty(Input::get('namafile'))) {
-            return Redirect::back()->withErrors(['Nama Materi Tidak Boleh Kosong']);
-          }
-          if ($ext == "pdf" || $ext == "png" || $ext == "jpg" || $ext == "docx" || $ext == "doc") {
-            $location = Storage::putFileAs('public/materi',$request->file('tes'),$namafile);
-            $lokasi = str_replace("public","storage",$location);
-            $materi = new materi();
-            $materi->nama_materi = Input::get('namafile');
-            $materi->lokasi_materi = $lokasi;
-            $materi->author = Input::get('author');
-            $materi->save();
-            return redirect('atur-materi')->with('status', 'File Berhasil Di Upload!');
-          }
-          return Redirect::back()->withErrors(['file tidak sesuai, tidak bisa diupload']);
-        } else {
-          return Redirect::back()->withErrors(['file tidak terbaca, tidak bisa diupload']);
-        }
-      }
 
       public function getAturKelulusan()
       {
@@ -293,14 +315,14 @@ class BackendController extends Controller
     public function postTambahKelulusan(Request $request)
     {
         $kelulusan = new kelulusan();
-        $kelulusan->npm = Input::get('npm');;
-        $kelulusan->nama = Input::get('nama');
-        $kelulusan->kelas = Input::get('kelas');
-        $kelulusan->jurusan = Input::get('jurusan');
-        $kelulusan->periode = Input::get('periode');
-        $kelulusan->materi = Input::get('materi');
-        $kelulusan->status = Input::get('status');
-        $kelulusan->ambilser = Input::get('ambilser');
+        $kelulusan->npm = strip_tags(Input::get('npm'));
+        $kelulusan->nama = strip_tags(Input::get('nama'));
+        $kelulusan->kelas = strip_tags(Input::get('kelas'));
+        $kelulusan->jurusan = strip_tags(Input::get('jurusan'));
+        $kelulusan->periode = strip_tags(Input::get('periode'));
+        $kelulusan->materi = strip_tags(Input::get('materi'));
+        $kelulusan->status = strip_tags(Input::get('status'));
+        $kelulusan->ambilser = strip_tags(Input::get('ambilser'));
 
         $kelulusan->save();
         return redirect('atur-kelulusan');
@@ -310,6 +332,24 @@ class BackendController extends Controller
       $kelulusan = kelulusan::find($id);
       return view('dashboard.kelulusan.kelulusan-edit',['kelulusan'=>$kelulusan]);
     }
+    
+    public function updateKelulusan(Request $request, $id)
+    {
+      $kelulusan = kelulusan::find($id);
+      $kelulusan->npm = strip_tags(Input::get('npm'));
+      $kelulusan->nama = strip_tags(Input::get('nama'));
+      $kelulusan->kelas = strip_tags(Input::get('kelas'));
+      $kelulusan->jurusan = strip_tags(Input::get('jurusan'));
+      $kelulusan->periode = strip_tags(Input::get('periode'));
+      $kelulusan->materi = strip_tags(Input::get('materi'));
+      $kelulusan->status = strip_tags(Input::get('status'));
+      $kelulusan->ambilser = strip_tags(Input::get('ambilser'));
+      $kelulusan->save();
+
+      return redirect('atur-kelulusan');
+    }
+
+
 
     public function destroyKelulusan($id)
     {

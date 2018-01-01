@@ -42,7 +42,7 @@ Jadwal {{$kelas}}
   <div class="section profile-content">
     <div class="container">
       <div class="row">
-      <div class="col-md-12 ml-auto mr-auto text-center">
+      <div class="col-xs-12 ml-auto mr-auto text-center">
         @if(count($jadwal))
         <table>
           <thead>

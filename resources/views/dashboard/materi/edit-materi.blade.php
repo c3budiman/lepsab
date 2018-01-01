@@ -22,6 +22,19 @@ Lepsab | Dashboard | Tambah Materi Kursus
       </div>
 
    <div class="box-body pad">
+     @if($errors->any())
+         <div class="alert alert-danger alert-dismissible">
+         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+         {{$errors->first()}}
+         </div>
+     @endif
+
+           @if (session('status'))
+           <div class="alert alert-info alert-dismissible">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           {{ session('status') }}
+           </div>
+           @endif
     <form action="/materi/{{$materi->id}}" enctype="multipart/form-data" method="post">
       {{ csrf_field() }}
       <div class="form-group">

@@ -19,7 +19,7 @@
                   </div>
                   <!-- /.box-header -->
                   <!-- form start -->
-                  <form role="form" method="post" action="{{url(action("BackendController@postTambahKelulusan"))}}">
+                  <form role="form" method="post" action="/kelulusan/{{$kelulusan->id}}">
                     {{ csrf_field() }}
                     <div class="box-body">
                       <div class="form-group">
@@ -56,6 +56,7 @@
                       </div>
                     </div>
                     <div class="box-footer">
+                      <input type="hidden" name="_method" value="PUT">
                       <input class="btn btn-info" type="submit" name="submit" value="submit">
                     </div>
                     </form>

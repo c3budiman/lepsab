@@ -12,7 +12,7 @@ Kelulusan Kursus/Workshop
   <div class="section profile-content">
     <div class="container">
       <div class="row">
-      <div class="col-md-12">
+      <div class="col-xs-12">
         <table class="table table-striped table-bordered datatable" id="datatable users-table">
           <thead>
             <tr>
