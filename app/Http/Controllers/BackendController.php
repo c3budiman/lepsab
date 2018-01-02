@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Hash;
@@ -332,7 +331,7 @@ class BackendController extends Controller
       $kelulusan = kelulusan::find($id);
       return view('dashboard.kelulusan.kelulusan-edit',['kelulusan'=>$kelulusan]);
     }
-    
+
     public function updateKelulusan(Request $request, $id)
     {
       $kelulusan = kelulusan::find($id);
