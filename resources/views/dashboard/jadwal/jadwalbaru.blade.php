@@ -17,7 +17,11 @@
           <section class="content-header">
             <h1>
               Menambah Jadwal<br>
-              <small>Disini anda dapat Menambah Jadwal, perkelas contoh dari format csv yg dapat di upload : </small>
+              <small>Disini anda dapat Menambah Jadwal, perkelas contoh dari format csv yg dapat di upload :
+                <br>
+                <br>
+                <a class="btn btn-xs btn-info" href="/storage/1eb05_datadump.csv">Download</a>
+              </small>
             </h1>
           </section>
         </div>

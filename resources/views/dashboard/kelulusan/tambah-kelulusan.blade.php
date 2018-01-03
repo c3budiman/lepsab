@@ -11,14 +11,18 @@
       <div class="col-md-3">
 
       </div>
-
+      
       <div class="col-md-6 text-center">
         <div class="box box-info">
           <div class="box-header">
             <section class="content-header">
               <h1>
                 Menambah Kelulusan<br>
-                <small>Disini anda dapat Menambah Kelulusan, perkelas, dan perseorangan contoh dari format csv yg dapat di upload : </small>
+                <small>Disini anda dapat Menambah Kelulusan, perkelas, dan perseorangan contoh dari format csv yg dapat di upload :
+                  <br>
+                  <br>
+                  <a class="btn btn-xs btn-info" href="/storage/datadump_kelulusan.csv">Download</a>
+                </small>
               </h1>
             </section>
           </div>
@@ -39,7 +43,7 @@
                </div>
                @endif
 
-        <form action="{{url(action("BackendController@postTambahKelulusan"))}}" enctype="multipart/form-data" method="post">
+        <form action="{{url(action("BackendController@importKelulusan"))}}" enctype="multipart/form-data" method="post">
           {{ csrf_field() }}
           <div class="form-group">
             <label for="exampleInputFile">Input CSV Kelulusan</label>

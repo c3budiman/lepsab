@@ -161,17 +161,14 @@
               <div class="box-header with-border">
                 <h4 class="box-title">
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                    Pengaturan Berita, Foto kegiatan, Pengguna, dan Halaman
+                    Pengaturan Berita, Materi, Jadwal, dan Kelulusan
                   </a>
                 </h4>
               </div>
               <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="box-body">
-                  Untuk mengatur berita, foto kegiatan, pengguna situs, dan halaman pada situs,
-                  seperti menambahkan, merubah, dan mendelete semua akun dapat melakukan nya.
-                  cara nya tinggal navigasi ke bagian kiri dashboard, lalu pilih menu yg diinginkan.
-                  jika belum bisa di klik berarti masih ada maintenance fungsi. untuk memodifikasi halaman index,
-                  hanya bisa dilakukan seorang dengan role admin web dan mempunyai hak akses ke cpanel.
+                  Untuk mengatur berita, file materi, jadwal dan kelulusan dapat dilihat pada tab edit di masing masing pengaturan.
+                  <img src="/storage/tes.png" alt="">
                 </div>
               </div>
             </div>
@@ -185,7 +182,7 @@
               </div>
               <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="box-body">
-                  Disarankan menggunakan password yang mudah diingat, dan tidak pasaran contoh password pasaran : 123456,
+                  Disarankan menggunakan password yang mudah diingat, dan random,
                   tujuan nya untuk menghindari hacking kepada situs, karena semua user dapat melakukan edit berita dan halaman.
                 </div>
               </div>
