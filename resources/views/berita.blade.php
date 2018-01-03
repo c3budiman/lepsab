@@ -24,7 +24,7 @@
                 <div class="entry-item">
                   <div class="entry-img">
                     <a href="/berita/{{$beritanya->sluglink}}">
-                      <img src="{{$matches[1][0]}}" alt="">
+                      <img class="img-responsive img-thumbnail" src="{{$matches[1][0]}}" alt="">
                     </a>
                   </div>
                   <div class="entry">

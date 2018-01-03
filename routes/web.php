@@ -6,6 +6,13 @@ Route::get('/', 'getController@getIndex');
 //     return view('welcome');
 // });
 
+Route::get('tes', 'BackendController@tesgan');
+
+//index volume 1 jelek, in case pengen di aktifkan lagi....
+Route::get('lab_indonesia', function () {
+    return view('lab_indo.layout');
+});
+
 Route::get('profil','getController@getProfile');
 Route::get('kursus','getController@getKursus');
 Route::get('kontak','getController@getKontak');

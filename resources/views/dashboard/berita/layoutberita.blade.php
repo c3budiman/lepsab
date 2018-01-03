@@ -230,7 +230,8 @@ $(document).ready(function() {
 </script>
 
 <!-- CK Editor -->
-<script src="{{ URL::asset('bower_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ URL::asset('templateEditor/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ URL::asset('templateEditor/ckeditor/config.js') }}"></script>
 <!-- Select2 -->
 <script src="{{ URL::asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <!-- REQUIRED JS SCRIPTS -->
@@ -251,7 +252,10 @@ $(document).ready(function() {
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
-    CKEDITOR.replace('editor1')
+    CKEDITOR.replace( 'editor1', {
+        uiColor: '#00c0ef',
+    });
+
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
   })

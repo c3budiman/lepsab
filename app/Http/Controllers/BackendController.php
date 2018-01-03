@@ -407,4 +407,9 @@ class BackendController extends Controller
           return Redirect('profile')->with('status', 'Nama updated!');
           }
     }
+
+    public function tesgan()
+    {
+        echo "<h1> Fitur sementara dimatikan demi keamanan..... </h1>";
+    }
 }

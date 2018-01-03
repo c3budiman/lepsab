@@ -74,7 +74,7 @@ Jadwal {{$kelas}}
       </div>
     </div>
     <br>
-    <div class="row" style="margin-left:40px">
+    <div class="row">
       {{$jadwal->links()}}
     </div>
   </div>

@@ -154,7 +154,7 @@
           <div class="col-md-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
       			<div class="blog-col">
       				<div class="entry-img">
-      					<img src="{{$matches[1][0]}}" alt="">
+      					<img class="img-responsive img-thumbnail" height="250px;" src="{{$matches[1][0]}}" alt="">
       				</div>
       				<div class="entry-box">
       					<h4 class="entry-title"><a href="/berita/{{$beritanya->sluglink}}">{{$beritanya->judul}}</a></h4>

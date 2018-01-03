@@ -13,8 +13,8 @@ class getController extends Controller
 {
   public function getBerita()
   {
-    $berita = DB::table('berita')->get();
-    return view('berita', ['berita'=>berita::paginate(3)]);
+    $berita = DB::table('berita')->orderBy('updated_at', 'desc')->paginate(3);
+    return view('berita', ['berita'=>$berita]);
   }
 
   public function getKursus()
@@ -33,7 +33,7 @@ class getController extends Controller
   }
 
   public function getIndex() {
-    $berita = berita::take(3)->get();
+    $berita = berita::take(3)->orderBy('updated_at', 'desc')->get();
     return view('index2', compact('berita'));
   }
 

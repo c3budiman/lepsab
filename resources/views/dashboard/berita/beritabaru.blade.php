@@ -25,6 +25,14 @@
 
                 </textarea>
                 <br>
+                <label for="">Jenis Berita : </label>
+                <select class="form-control" name="jenis">
+                  <option value="berita_umum">Berita Umum</option>
+                  <option value="berita_indo">Berita Lab B.Indo</option>
+                  <option value="berita_inggris">Berita Lab B.Ing</option>
+                  <option value="berita_workshop">Berita Workshop</option>
+                </select>
+                <br>
                 <input class="pull-right btn btn-lg btn-info" type="submit" name="submit" value="Post">
           </form>
         </div>
