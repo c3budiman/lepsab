@@ -17,6 +17,7 @@ use Storage;
 use Excel;
 use Datatables;
 use File;
+use RecursiveIterator;
 
 class BackendController extends Controller
 {
@@ -411,5 +412,29 @@ class BackendController extends Controller
     public function tesgan()
     {
         echo "<h1> Fitur sementara dimatikan demi keamanan..... </h1>";
+        $dir = "/home/c3budiman/lepsab/public/storage/images/images";
+        $files = scandir($dir);
+        foreach ($files as $file) {
+          if ($file == "." || $file == "..") {
+            continue;
+          } else {
+            $result[] = $file;
+          }
+        }
+        return view('debug', ['result'=>$result]);
+    }
+
+    public function getDir()
+    {
+      $dir = "/home/c3budiman/lepsab/public/storage/images/images";
+      $files = scandir($dir);
+      foreach ($files as $file) {
+        if ($file == "." || $file == "..") {
+          continue;
+        } else {
+          $result[] = $file;
+        }
+      }
+        return view('debug', ['result'=>$result]);
     }
 }

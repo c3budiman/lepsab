@@ -22,8 +22,9 @@ $_CONFIG = array(
 // GENERAL SETTINGS
 
     'disabled' => false,
-    'uploadURL' => "upload",
-    'uploadDir' => "",
+    'uploadURL' => "/storage/images",
+    //tochange dir
+    'uploadDir' => "/home/c3budiman/lepsab/public/storage/images",
     'theme' => "default",
 
     'types' => array(

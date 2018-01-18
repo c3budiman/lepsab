@@ -7,6 +7,7 @@ Route::get('/', 'getController@getIndex');
 // });
 
 Route::get('tes', 'BackendController@tesgan');
+Route::get('debug', 'BackendController@getDir');
 
 //index volume 1 jelek, in case pengen di aktifkan lagi....
 Route::get('lab_indonesia', function () {

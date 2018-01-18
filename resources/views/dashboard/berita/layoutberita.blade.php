@@ -254,6 +254,7 @@ $(document).ready(function() {
     // instance, using default configuration.
     CKEDITOR.replace( 'editor1', {
         uiColor: '#00c0ef',
+        filebrowserImageBrowseUrl: '/tes',
     });
 
     //bootstrap WYSIHTML5 - text editor

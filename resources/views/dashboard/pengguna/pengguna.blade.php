@@ -172,7 +172,6 @@
               "language": {
               "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Indonesian-Alternative.json"
           },
-          processing: true,
           serverSide: true,
           ajax: '{{ route('pengguna/json') }}',
           columns: [
